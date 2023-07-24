@@ -49,3 +49,4 @@ RUN cd make_it_dense/apps && \
     sed -i 's/load_from_checkpoint(/load_from_checkpoint(map_location=torch.device("cpu"), /g' test_scan.py && \
     sed -i 's/torch.load(checkpoint)/torch.load(checkpoint, map_location=torch.device("cpu"))/g' test_scan.py && \
     sed -i 's/python/python3/g' test_scan.py
+COPY . /workspace

@@ -1,4 +1,5 @@
 import sys
+sys.path.insert(1, '/workspace/PointsRemovalScripts')
 import HPR_open3d
 import HPR_ours
 import numpy as np
