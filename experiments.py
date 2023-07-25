@@ -1,9 +1,7 @@
 import sys
-sys.path.insert(1, '/workspace/PointsRemovalScripts')
-import HPR_open3d
-import HPR_ours
+from points_removal_scripts import HPR_open3d
+from points_removal_scripts import HPR_ours
 import numpy as np
-import open3d as o3d
 
 def get_visible_points_from_file(path):
     index = 0
@@ -30,37 +28,23 @@ def count_accuracy(cloud_size, estimated_visibility, marked_visibility):
     else:
         return "empty cloud"
 
-command_line_args = sys.argv[1:]
-if command_line_args[0] == "1":
-    cloud_paths = open(command_line_args[1], 'r')
-    try:
-        cloud = cloud_paths.readline().split('\n')[0]
-        while cloud:
-            pcd, pt_map = HPR_open3d.hidden_points_removal(cloud)
-            cloud_size, marked_visibility = get_visible_points_from_file(cloud)
+# Calculate open3d method
+cloud_path = sys.argv[1]
 
-            estimated_visibility = [0] * cloud_size
-            visible_indexes = np.asarray(pt_map)
-            for i in range(cloud_size):
-                if i in visible_indexes:
-                    estimated_visibility[i] = 1
+pcd, pt_map = HPR_open3d.hidden_points_removal(cloud_path)
+cloud_size, marked_visibility = get_visible_points_from_file(cloud_path)
 
-            print("an accuracy score is: ", count_accuracy(cloud_size, estimated_visibility, marked_visibility))
-            cloud = cloud_paths.readline().split('\n')[0]
-    finally:
-        cloud_paths.close()
-if command_line_args[0] == "2":
-    cloud_paths = open(command_line_args[1], 'r')
-    mesh_paths = open(command_line_args[2], 'r')
-    try:
-        cloud = cloud_paths.readline().split('\n')[0]
-        mesh = mesh_paths.readline().split('\n')[0]
-        while cloud and mesh:
-            pcd, estimated_visibility = HPR_ours.hidden_points_removal(mesh, cloud)
-            cloud_size, marked_visibility = get_visible_points_from_file(cloud)
-            print("an accuracy score is: ", count_accuracy(cloud_size, estimated_visibility, marked_visibility))
-            cloud = cloud_paths.readline().split('\n')[0]
-            mesh = mesh_paths.readline().split('\n')[0]
-    finally:
-        cloud_paths.close()
-        mesh_paths.close()
+estimated_visibility = [0] * cloud_size
+visible_indexes = np.asarray(pt_map)
+for i in range(cloud_size):
+    if i in visible_indexes:
+        estimated_visibility[i] = 1
+
+print("an accuracy score is: ", count_accuracy(cloud_size, estimated_visibility, marked_visibility))
+cloud = cloud_path.readline().split('\n')[0]
+
+# Calculate our method
+#mesh_path = open(command_line_args[2], 'r')
+#pcd, estimated_visibility = HPR_ours.hidden_points_removal(mesh, cloud)
+#cloud_size, marked_visibility = get_visible_points_from_file(cloud)
+#print("an accuracy score is: ", count_accuracy(cloud_size, estimated_visibility, marked_visibility))
