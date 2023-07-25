@@ -2,12 +2,10 @@ import numpy as np
 import open3d as o3d
 import sys
 import subprocess
-#sys.path.append('/workspace/make_it_dense/apps/')
-#import test_scan
+import test_scan2
 
 def hidden_points_removal(point_cloud_path):
-    subprocess.call(["/make_it_dense/apps/test_scan.py", str(point_cloud_path)])
-    #test_scan.test(point_cloud_path)
+    test_scan2.test(point_cloud_path)
     # pcd = o3d.io.read_point_cloud(point_cloud_path)
     # mesh = o3d.io.read_triangle_mesh(mesh_path)
     # mesh = o3d.t.geometry.TriangleMesh.from_legacy(mesh)
