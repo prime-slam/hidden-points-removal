@@ -5,7 +5,6 @@ from pathlib import Path
 import numpy as np
 import open3d as o3d
 import torch
-import typer
 
 from vdb_to_numpy import vdb_to_triangle_mesh
 
@@ -23,10 +22,10 @@ def read_point_cloud(filename):
     return np.asarray(scan, dtype=np.float64)
 
 
-def test(
+def generate_mesh(
     pointcloud: Path,
-    checkpoint: Path = typer.Option(Path("/workspace/make_it_dense/models/make_it_dense.ckpt"), exists=True),
-    cuda: bool = typer.Option(False, "--cuda"),
+    checkpoint: Path = "/workspace/make_it_dense/models/make_it_dense.ckpt",
+    cuda: bool = False,
 ):
     config = MkdConfig.from_dict(torch.load(checkpoint, map_location=torch.device("cpu"))["hyper_parameters"])
     model = CompletionNet.load_from_checkpoint(map_location=torch.device("cpu"), checkpoint_path=str(checkpoint), config=config)
@@ -42,6 +41,3 @@ def test(
     )
 
     return vdb_to_triangle_mesh(out_grid)
-
-if __name__ == "__main__":
-    typer.run(test)
