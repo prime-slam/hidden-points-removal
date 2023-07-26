@@ -33,5 +33,7 @@ accuracy according to marked dataset. Dockerfile is provided to build docker-ima
 |:----------:|:---------------------:|:---------------------:|:---------------------:|
 |   open3d   |         0.541         |         0.54          |         0.427         |
 | mesh-based |         0.798         |         0.763         |         0.711         |
-![Point cloud before processed by open3d method](https://www.dropbox.com/s/o0vf06vyzqjqyr2/HPR_open3d_before.png?dl=0)
-![Point cloud after processed by open3d method](https://www.dropbox.com/s/o0vf06vyzqjqyr2/HPR_open3d_after.png?dl=0)
+
+
+![Point cloud before processed by open3d method](https://user-images.githubusercontent.com/114094098/256370348-3564410e-98f3-484f-8f26-49808f213148.png)
+![Point cloud after processed by open3d method](https://user-images.githubusercontent.com/114094098/256370495-f2bda6ac-a5a8-417b-a039-fc6fed86db25.png)
