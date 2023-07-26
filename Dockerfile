@@ -44,10 +44,4 @@ RUN git clone https://github.com/PRBonn/vdbfusion.git && \
     cd make_it_dense && \
     pip install .
 
-RUN cd make_it_dense/apps && \
-    sed -i 's/o3d.io.read_point_cloud(filename)/o3d.io.read_point_cloud(str(filename))/g' test_scan.py && \
-    sed -i 's/load_from_checkpoint(/load_from_checkpoint(map_location=torch.device("cpu"), /g' test_scan.py && \
-    sed -i 's/torch.load(checkpoint)/torch.load(checkpoint, map_location=torch.device("cpu"))/g' test_scan.py && \
-    sed -i 's/python/python3/g' test_scan.py
-
 COPY . /workspace

@@ -1,16 +1,13 @@
-#!/usr/bin/env python3
-import os
-from pathlib import Path
-
 import numpy as np
 import open3d as o3d
+import os
 import torch
-
-from vdb_to_numpy import vdb_to_triangle_mesh
 
 from make_it_dense.evaluation import run_completion_pipeline
 from make_it_dense.models import CompletionNet
 from make_it_dense.utils import MkdConfig
+from pathlib import Path
+from vdb_to_numpy import vdb_to_triangle_mesh
 
 
 def read_point_cloud(filename):
@@ -27,8 +24,12 @@ def generate_mesh(
     checkpoint: Path = "/workspace/make_it_dense/models/make_it_dense.ckpt",
     cuda: bool = False,
 ):
-    config = MkdConfig.from_dict(torch.load(checkpoint, map_location=torch.device("cpu"))["hyper_parameters"])
-    model = CompletionNet.load_from_checkpoint(map_location=torch.device("cpu"), checkpoint_path=str(checkpoint), config=config)
+    config = MkdConfig.from_dict(
+        torch.load(checkpoint, map_location=torch.device("cpu"))["hyper_parameters"]
+    )
+    model = CompletionNet.load_from_checkpoint(
+        map_location=torch.device("cpu"), checkpoint_path=str(checkpoint), config=config
+    )
     model.eval()
 
     # Run make-it-dense pipeline

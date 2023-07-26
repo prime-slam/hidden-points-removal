@@ -1,7 +1,9 @@
 import numpy as np
 import open3d as o3d
+
 from points_removal_scripts.mesh_based_script.mesh_generation import generate_mesh
-import subprocess
+
+
 def hidden_points_removal(point_cloud_path):
     pcd = o3d.io.read_point_cloud(point_cloud_path)
     mesh = generate_mesh(point_cloud_path)
