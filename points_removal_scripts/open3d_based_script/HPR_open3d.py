@@ -1,7 +1,6 @@
 import numpy as np
 import open3d as o3d
 
-
 def hidden_points_removal(path):
     pcd = o3d.io.read_point_cloud(str(path))
     diameter = np.linalg.norm(
@@ -16,4 +15,5 @@ def hidden_points_removal(path):
     _, pt_map = pcd.hidden_point_removal(camera, radius)
 
     pcd = pcd.select_by_index(pt_map)
+
     return pcd, pt_map

@@ -4,7 +4,6 @@ import numpy as np
 from points_removal_scripts.mesh_based_script import HPR_mesh_based
 from points_removal_scripts.open3d_based_script import HPR_open3d
 
-
 def get_visible_points_from_file(path):
     index = 0
     marked_visibility = []
@@ -17,7 +16,6 @@ def get_visible_points_from_file(path):
             marked_visibility.append(float(point.split()[5]))
             index += 1
     return marked_visibility
-
 
 def count_accuracy(cloud_size, estimated_visibility, marked_visibility):
     coincide = 0
@@ -34,7 +32,7 @@ def count_accuracy(cloud_size, estimated_visibility, marked_visibility):
 # Calculate open3d method
 parser = argparse.ArgumentParser(
     description="""
-    This script takes path to the cloud data   
+    This script takes path to the cloud data
     """
 )
 parser.add_argument("cloud_path", help="path to cloud data")
@@ -54,10 +52,11 @@ print(
     count_accuracy(cloud_size, estimated_visibility, marked_visibility),
 )
 
-# Calculate our method
+# Calculate mesh-based method
 
 pcd, estimated_visibility = HPR_mesh_based.hidden_points_removal(cloud_path)
-cloud_size, marked_visibility = get_visible_points_from_file(cloud_path)
+marked_visibility = get_visible_points_from_file(cloud_path)
+cloud_size = len(marked_visibility)
 print(
     "an accuracy score is: ",
     count_accuracy(cloud_size, estimated_visibility, marked_visibility),
