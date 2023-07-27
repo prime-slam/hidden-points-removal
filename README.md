@@ -8,25 +8,25 @@ accuracy according to marked dataset. Dockerfile is provided to build docker-ima
 ## Installation ##
 1. Run this in your terminal:
 ```
-    git clone git@github.com:prime-slam/hidden-points-removal.git
+git clone git@github.com:prime-slam/hidden-points-removal.git
 ```
 2. Enter the folder:
 ```
-    cd hidden-points-removal
+cd hidden-points-removal
 ```
 3. Install [Docker](https://www.docker.com) if you don't have it yet 
 4. Build docker-image by running the following command:
 ```
-    docker build -t makeitdense .
+docker build -t makeitdense .
 ```
 6. Download [dataset](https://visibility.labri.fr/)
 7. Run image by:
 ```
-    docker run --rm -it -v {path_to_visibility_dataset_folder}/:/workspace/dataset makeitdense
+docker run --rm -it -v {path_to_visibility_dataset_folder}/:/workspace/dataset makeitdense
 ```
 8. To test methods on point cloud run:
 ```
-    python3 experiments.py {path_to_point_cloud}
+python3 experiments.py {path_to_point_cloud}
 ```
 ## Compare results ##
 |   Method   | accuracy on 1st cloud | accuracy on 2nd cloud | accuracy on 3rd cloud |
@@ -34,6 +34,11 @@ accuracy according to marked dataset. Dockerfile is provided to build docker-ima
 |   open3d   |         0.541         |         0.54          |         0.427         |
 | mesh-based |         0.798         |         0.763         |         0.711         |
 
-
+### Point cloud before being processed ###
 ![Point cloud before processed by open3d method](https://user-images.githubusercontent.com/114094098/256370348-3564410e-98f3-484f-8f26-49808f213148.png)
+
+### Point cloud after being processed by open3d method ###
 ![Point cloud after processed by open3d method](https://user-images.githubusercontent.com/114094098/256370495-f2bda6ac-a5a8-417b-a039-fc6fed86db25.png)
+
+### Point cloud after being processed by mesh-based method ###
+![Point cloud after being processed by mesh-based method](https://user-images.githubusercontent.com/114094098/256474224-7f1f1c2c-5750-4196-b16f-aba484233792.png)
