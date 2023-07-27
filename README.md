@@ -35,10 +35,10 @@ python3 experiments.py {path_to_point_cloud}
 | mesh-based |         0.798         |         0.763         |         0.711         |
 
 ### Point cloud before being processed ###
-![Point cloud before processed by open3d method](https://user-images.githubusercontent.com/114094098/256370348-3564410e-98f3-484f-8f26-49808f213148.png)
+![Point cloud before processed by open3d method](https://user-images.githubusercontent.com/114094098/256540538-993d263f-2b83-458c-9ec3-e6ddc784c32f.png)
 
 ### Point cloud after being processed by open3d method ###
-![Point cloud after processed by open3d method](https://user-images.githubusercontent.com/114094098/256370495-f2bda6ac-a5a8-417b-a039-fc6fed86db25.png)
+![Point cloud after processed by open3d method](https://user-images.githubusercontent.com/114094098/256540570-9c211eba-a040-4e4c-897a-06b5de0020f0.png)
 
 ### Point cloud after being processed by mesh-based method ###
-![Point cloud after being processed by mesh-based method](https://user-images.githubusercontent.com/114094098/256474224-7f1f1c2c-5750-4196-b16f-aba484233792.png)
+![Point cloud after being processed by mesh-based method](https://user-images.githubusercontent.com/114094098/256540695-c142a14b-00c7-46cc-a5c6-0fbd46eeeb0e.png)
